@@ -80,6 +80,34 @@
                 <td>10$</td>
             </tr>
         </table>
-        
+        <hr>
+        <h3>Code Display</h3>
+        <q><b>elementary geometry</b>The part of Euclidean geometry dealing with the simpler properties of straight lines, circles, planes, polyhedrons, the sphere, the cylinder, and the right circular cone. We can see one of the example as below Length of the union of segments</q>
+        <p>Source link:</p>
+        <a href="https://www.merriam-webster.com/dictionary/elementary%20geometry#:~:text=Definition%20of%20elementary%20geometry,and%20the%20right%20circular%20cone">click here</a>
+        <pre>
+            int length_union(const vector<pair<int, int>> &a) {
+                int n = a.size();
+                vector<pair<int, bool>> x(n*2);
+                for (int i = 0; i < n; i++) {
+                    x[i*2] = {a[i].first, false};
+                    x[i*2+1] = {a[i].second, true};
+                }
+            
+                sort(x.begin(), x.end());
+            
+                int result = 0;
+                int c = 0;
+                for (int i = 0; i < n * 2; i++) {
+                    if (i > 0 && x[i].first > x[i-1].first && c > 0)
+                        result += x[i].first - x[i-1].first;
+                    if (x[i].second)
+                        c--;
+                    else
+                        c++;
+                }
+                return result;
+            }            
+        </pre>
     </body>
 </html>
